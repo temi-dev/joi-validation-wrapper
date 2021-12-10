@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "joi": "^17.5.0"
-  }
+  },
+  "name": "@elejant/joi-validation-wrapper",
+  "version": "1.0.0",
+  "description": "Built on Joi Validation",
+  "main": "index.ts",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temitope-elejant/joi-validation-wrapper.git"
+  },
+  "author": "temitope@elejant.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/temitope-elejant/joi-validation-wrapper/issues"
+  },
+  "homepage": "https://github.com/temitope-elejant/joi-validation-wrapper#readme"
 }
