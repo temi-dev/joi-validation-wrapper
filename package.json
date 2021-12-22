@@ -2,7 +2,7 @@
   "dependencies": {
     "joi": "^17.5.0"
   },
-  "name": "@elejant/joi-validation-wrapper",
+  "name": "@temi.dev/joi-validation-wrapper",
   "version": "1.0.1",
   "description": "Built on Joi Validation",
   "main": "dist/index.js",
@@ -11,18 +11,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
+
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/temitope-elejant/joi-validation-wrapper.git"
+    "url": "git+https://github.com/temi-dev/joi-validation-wrapper.git"
   },
   "author": "temitope@elejant.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/temitope-elejant/joi-validation-wrapper/issues"
+    "url": "https://github.com/temi-dev/joi-validation-wrapper/issues"
   },
-  "homepage": "https://github.com/temitope-elejant/joi-validation-wrapper#readme",
+  "homepage": "https://github.com/temi-dev/joi-validation-wrapper#readme",
   "keywords": [
     "Joi",
     "validation"
-  ]
+  ],
+  "devDependencies": {}
 }
