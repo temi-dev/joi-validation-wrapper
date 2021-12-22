@@ -21,5 +21,8 @@
     "url": "https://github.com/temitope-elejant/joi-validation-wrapper/issues"
   },
   "homepage": "https://github.com/temitope-elejant/joi-validation-wrapper#readme",
-  "keywords": []
+  "keywords": [
+    "Joi",
+    "validation"
+  ]
 }
