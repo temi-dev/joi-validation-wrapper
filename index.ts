@@ -7,12 +7,13 @@ interface IValidationconfigurationuration {
     items?: any;
     required?: boolean;
     valids?: Array<string | number>;
+    min?: number
 }
 
 class Validations {
 
     // Error messages formmating
-    errorMessenger(errors: any, configuration: IValidationconfigurationuration) {
+    errorMessenger(errors: any, configuration?: IValidationconfigurationuration) {
         errors.forEach((error: any) => {
             switch (error.code) {
 
@@ -21,7 +22,7 @@ class Validations {
                     error.message = " `" + error.local.label + "` is required. ";
                     break;
                 case "any.only":
-                    error.message = " `" + error.local.label + "` must be any of {" + configuration.valids + "} . ";
+                    error.message = " `" + error.local.label + "` must be any of {" + configuration?.valids + "} . ";
                     break;
 
                 //Array error messages
@@ -49,7 +50,7 @@ class Validations {
                     break;
                 case "string.min":
                     error.message = "'" + error.local.label + "' should be at least 8 characters.";
-
+                    break;
                 //Number error messages
                 case "number.base":
                     error.message = " `" + error.local.label + "` must be a number . ";
@@ -63,24 +64,23 @@ class Validations {
     }
 
     //Validaing an array field
-    array(configuration: IValidationconfigurationuration) {
+    array(configuration?: IValidationconfigurationuration) {
         let validation = Joi.array();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required()
-        if (configuration.optional)
+        if (configuration?.optional)
             validation = validation.optional();
-        if (configuration.items)
+        if (configuration?.items)
             validation = validation.items(configuration.items);
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
         });
     }
 
-
     //Validating a date field
-    date(configuration: IValidationconfigurationuration) {
+    date(configuration?: IValidationconfigurationuration) {
         let validation = Joi.date();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
@@ -88,9 +88,9 @@ class Validations {
     }
 
     //Validating an email field
-    email(configuration: IValidationconfigurationuration) {
+    email(configuration?: IValidationconfigurationuration) {
         let validation = Joi.string().email();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
@@ -98,15 +98,15 @@ class Validations {
     }
 
     //Validating a string field
-    string(configuration: IValidationconfigurationuration) {
+    string(configuration?: IValidationconfigurationuration) {
         let validation = Joi.string();
-        if (configuration.allowEmpty)
+        if (configuration?.allowEmpty)
             validation = validation.allow('');
-        if (configuration.optional)
+        if (configuration?.optional)
             validation = validation.optional();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required();
-        if (configuration.valids)
+        if (configuration?.valids)
             validation = validation.valid(...configuration.valids);
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
@@ -114,13 +114,13 @@ class Validations {
     }
 
     //Validating a number field
-    number(configuration: IValidationconfigurationuration) {
+    number(configuration?: IValidationconfigurationuration) {
         let validation = Joi.number();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required();
-        if (configuration.optional)
+        if (configuration?.optional)
             validation = validation.optional();
-        if (configuration.integer)
+        if (configuration?.integer)
             validation = validation.integer();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
@@ -128,19 +128,21 @@ class Validations {
     }
 
     //Validating an object
-
-    object(configuration: IValidationconfigurationuration) {
+    object(configuration?: IValidationconfigurationuration) {
         let validation = Joi.object();
-        if (configuration.required)
+        if (configuration?.required)
             validation = validation.required();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
         });
     }
   
-    password(configuration: IValidationconfigurationuration) {
-        let validation = Joi.string().min(8);
-        if (configuration.required)
+    //Password validation
+    password(configuration?: IValidationconfigurationuration) {
+        let validation = Joi.string();
+        if (configuration?.min)
+            validation = validation.min(configuration.min)
+        if (configuration?.required)
             validation = validation.required();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)

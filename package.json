@@ -11,7 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/temi-dev/joi-validation-wrapper.git"
@@ -25,6 +24,5 @@
   "keywords": [
     "Joi",
     "validation"
-  ],
-  "devDependencies": {}
+  ]
 }
