@@ -1,20 +1,21 @@
 import Joi from 'joi';
-interface IValidationConfiguration {
+interface IValidationconfigurationuration {
     allowEmpty?: boolean;
     optional?: boolean;
-    integer?: number;
+    integer?: boolean;
     items?: any;
     required?: boolean;
     valids?: Array<string | number>;
+    min?: number;
 }
 declare class Validations {
-    errorMessenger(errors: any, config: IValidationConfiguration): any;
-    array(config: IValidationConfiguration): Joi.ArraySchema;
-    date(config: IValidationConfiguration): Joi.DateSchema;
-    email(config: IValidationConfiguration): Joi.StringSchema;
-    string(config: IValidationConfiguration): Joi.StringSchema;
-    number(config: IValidationConfiguration): Joi.NumberSchema;
-    object(config: IValidationConfiguration): Joi.ObjectSchema<any>;
-    password(config: IValidationConfiguration): Joi.StringSchema;
+    errorMessenger(errors: any, configuration?: IValidationconfigurationuration): any;
+    array(configuration?: IValidationconfigurationuration): Joi.ArraySchema;
+    date(configuration?: IValidationconfigurationuration): Joi.DateSchema;
+    email(configuration?: IValidationconfigurationuration): Joi.StringSchema;
+    string(configuration?: IValidationconfigurationuration): Joi.StringSchema;
+    number(configuration?: IValidationconfigurationuration): Joi.NumberSchema;
+    object(configuration?: IValidationconfigurationuration): Joi.ObjectSchema<any>;
+    password(configuration?: IValidationconfigurationuration): Joi.StringSchema;
 }
 export default Validations;

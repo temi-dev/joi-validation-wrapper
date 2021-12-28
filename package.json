@@ -3,7 +3,7 @@
     "joi": "^17.5.0"
   },
   "name": "@temi.dev/joi-validation-wrapper",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Built on Joi Validation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

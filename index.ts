@@ -3,7 +3,7 @@ import Joi from 'joi'
 interface IValidationconfigurationuration {
     allowEmpty?: boolean;
     optional?: boolean;
-    integer?: number;
+    integer?: boolean;
     items?: any;
     required?: boolean;
     valids?: Array<string | number>;
@@ -52,9 +52,9 @@ class Validations {
                     error.message = "'" + error.local.label + "' should be at least 8 characters.";
                     break;
                 //Number error messages
-                case "number.base":
-                    error.message = " `" + error.local.label + "` must be a number . ";
-                    break;
+                // case "number.base":
+                //     error.message = " `" + error.local.label + "` must be a number . ";
+                //     break;
                 case "number.empty":
                     error.message = " `" + error.local.label + "`  must not be empty. ";
                     break;

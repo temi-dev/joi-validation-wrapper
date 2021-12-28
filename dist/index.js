@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const joi_1 = __importDefault(require("joi"));
 class Validations {
-    errorMessenger(errors, config) {
+    // Error messages formmating
+    errorMessenger(errors, configuration) {
         errors.forEach((error) => {
             switch (error.code) {
                 //General error messages
@@ -13,7 +14,7 @@ class Validations {
                     error.message = " `" + error.local.label + "` is required. ";
                     break;
                 case "any.only":
-                    error.message = " `" + error.local.label + "` must be any of {" + config.valids + "} . ";
+                    error.message = " `" + error.local.label + "` must be any of {" + (configuration === null || configuration === void 0 ? void 0 : configuration.valids) + "} . ";
                     break;
                 //Array error messages
                 case "array.includesRequiredUnknowns":
@@ -38,10 +39,11 @@ class Validations {
                     break;
                 case "string.min":
                     error.message = "'" + error.local.label + "' should be at least 8 characters.";
-                //Number error messages
-                case "number.base":
-                    error.message = " `" + error.local.label + "` must be a number . ";
                     break;
+                //Number error messages
+                // case "number.base":
+                //     error.message = " `" + error.local.label + "` must be a number . ";
+                //     break;
                 case "number.empty":
                     error.message = " `" + error.local.label + "`  must not be empty. ";
                     break;
@@ -49,74 +51,83 @@ class Validations {
         });
         return errors;
     }
-    array(config) {
+    //Validaing an array field
+    array(configuration) {
         let validation = joi_1.default.array();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
-        if (config.optional)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.optional)
             validation = validation.optional();
-        if (config.items)
-            validation = validation.items(config.items);
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.items)
+            validation = validation.items(configuration.items);
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    date(config) {
+    //Validating a date field
+    date(configuration) {
         let validation = joi_1.default.date();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    email(config) {
+    //Validating an email field
+    email(configuration) {
         let validation = joi_1.default.string().email();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    string(config) {
+    //Validating a string field
+    string(configuration) {
         let validation = joi_1.default.string();
-        if (config.allowEmpty)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.allowEmpty)
             validation = validation.allow('');
-        if (config.optional)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.optional)
             validation = validation.optional();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
-        if (config.valids)
-            validation = validation.valid(...config.valids);
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.valids)
+            validation = validation.valid(...configuration.valids);
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    number(config) {
+    //Validating a number field
+    number(configuration) {
         let validation = joi_1.default.number();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
-        if (config.optional)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.optional)
             validation = validation.optional();
-        if (config.integer)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.integer)
             validation = validation.integer();
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    object(config) {
+    //Validating an object
+    object(configuration) {
         let validation = joi_1.default.object();
-        if (config.required)
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
-    password(config) {
-        let validation = joi_1.default.string().min(8);
-        if (config.required)
+    //Password validation
+    password(configuration) {
+        let validation = joi_1.default.string();
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.min)
+            validation = validation.min(configuration.min);
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
             validation = validation.required();
         return validation.error((errors) => {
-            return this.errorMessenger(errors, config);
+            return this.errorMessenger(errors, configuration);
         });
     }
 }
