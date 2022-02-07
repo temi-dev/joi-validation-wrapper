@@ -23,6 +23,10 @@ class Validations {
                 case "array.base":
                     error.message = " `" + error.local.label + "` must be an array. ";
                     break;
+                //Boolean error messages
+                case "boolean.base":
+                    error.message = " `" + error.local.label + "` must be a boolean. ";
+                    break;
                 //Date error messages
                 case "date.base":
                     error.message = " `" + error.local.label + "` must be a valid date. ";
@@ -60,6 +64,14 @@ class Validations {
             validation = validation.optional();
         if (configuration === null || configuration === void 0 ? void 0 : configuration.items)
             validation = validation.items(configuration.items);
+        return validation.error((errors) => {
+            return this.errorMessenger(errors, configuration);
+        });
+    }
+    boolean(configuration) {
+        let validation = joi_1.default.boolean();
+        if (configuration === null || configuration === void 0 ? void 0 : configuration.required)
+            validation = validation.required();
         return validation.error((errors) => {
             return this.errorMessenger(errors, configuration);
         });

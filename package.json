@@ -3,7 +3,7 @@
     "joi": "^17.5.0"
   },
   "name": "@temi.dev/joi-validation-wrapper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Built on Joi Validation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/temi-dev/joi-validation-wrapper.git"
   },
-  "author": "temitope@elejant.com",
+  "author": "hello@temi.dev",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/temi-dev/joi-validation-wrapper/issues"

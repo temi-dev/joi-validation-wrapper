@@ -11,6 +11,7 @@ interface IValidationconfigurationuration {
 declare class Validations {
     errorMessenger(errors: any, configuration?: IValidationconfigurationuration): any;
     array(configuration?: IValidationconfigurationuration): Joi.ArraySchema;
+    boolean(configuration?: IValidationconfigurationuration): Joi.BooleanSchema;
     date(configuration?: IValidationconfigurationuration): Joi.DateSchema;
     email(configuration?: IValidationconfigurationuration): Joi.StringSchema;
     string(configuration?: IValidationconfigurationuration): Joi.StringSchema;

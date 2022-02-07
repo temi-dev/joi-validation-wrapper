@@ -15,8 +15,8 @@ class Validations {
     // Error messages formmating
     errorMessenger(errors: any, configuration?: IValidationconfigurationuration) {
         errors.forEach((error: any) => {
+            
             switch (error.code) {
-
                 //General error messages
                 case "any.required":
                     error.message = " `" + error.local.label + "` is required. ";
@@ -31,6 +31,11 @@ class Validations {
                     break;
                 case "array.base":
                     error.message = " `" + error.local.label + "` must be an array. ";
+                    break;
+
+                //Boolean error messages
+                case "boolean.base":
+                    error.message = " `" + error.local.label + "` must be a boolean. ";
                     break;
 
                 //Date error messages
@@ -72,6 +77,15 @@ class Validations {
             validation = validation.optional();
         if (configuration?.items)
             validation = validation.items(configuration.items);
+        return validation.error((errors: any) => {
+            return this.errorMessenger(errors, configuration)
+        });
+    }
+
+    boolean(configuration?: IValidationconfigurationuration){
+        let validation = Joi.boolean();
+        if (configuration?.required)
+            validation = validation.required();
         return validation.error((errors: any) => {
             return this.errorMessenger(errors, configuration)
         });
