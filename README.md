@@ -1,4 +1,4 @@
-# joi-validation-wrappera
+# joi-validation-wrapper
 
 Validation wrapper built on [Joi](https://www.npmjs.com/package/joi)
 
