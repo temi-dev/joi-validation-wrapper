@@ -6,7 +6,7 @@ Validation wrapper built on [Joi](https://www.npmjs.com/package/joi)
 
 ```` npm i joi````
 
-```` npm i joi-validation-wrapper````
+```` npm i @temi.dev/joi-validation-wrapper````
 
 ## Validation options
 
